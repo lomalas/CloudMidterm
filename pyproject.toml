@@ -1,0 +1,17 @@
+[project]
+name = "fractalize"
+version = "0.1.0"
+description = "Econmy Simulator"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "fastapi>=0.129.0",
+    "uvicorn[standard]>=0.40.0",
+    "numpy>=2.3.5",
+    "numba>=0.63.1",
+    "matplotlib>=3.10.8",
+    "plotly>=6.0.0",
+    "streamlit>=1.35.0",
+    "dash>=4.0.0"
+]
