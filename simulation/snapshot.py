@@ -1,6 +1,10 @@
 import json
 import os
+import threading
 from datetime import datetime
+
+MAX_SNAPSHOTS = 500
+
 
 class Snapshot:
     def __init__(self, week_number, companies, currencies):
@@ -24,28 +28,56 @@ class Snapshot:
 
     def save(self, filename):
         """Save this snapshot to a JSON file."""
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             json.dump({
-                'week_number': self.week_number,
-                'timestamp': self.timestamp.isoformat(),
-                'companies': self.companies,
-                'currencies': self.currencies
+                "week_number": self.week_number,
+                "timestamp": self.timestamp.isoformat(),
+                "companies": self.companies,
+                "currencies": self.currencies
             }, f, indent=4)
-    
 
 
 class SnapshotManager:
+
     def __init__(self, save_dir="snapshots"):
         self.snapshots = []
         self.save_dir = save_dir
+        self.lock = threading.Lock()
+
         os.makedirs(save_dir, exist_ok=True)
 
     def capture_week(self, week_number, companies, currencies):
+
         snapshot = Snapshot(week_number, companies, currencies)
-        self.snapshots.append(snapshot)
-        # Save automatically
+
+        with self.lock:
+
+            self.snapshots.append(snapshot)
+
+            # Ring buffer to prevent infinite growth
+            if len(self.snapshots) > MAX_SNAPSHOTS:
+                self.snapshots.pop(0)
+
+        # Save snapshot to disk
         filename = os.path.join(self.save_dir, f"week_{week_number}.json")
         snapshot.save(filename)
+
         print(f"[Snapshot] Week {week_number} saved: {filename}")
-    
-    
+
+    def get_snapshots(self):
+        """Thread-safe snapshot copy for readers."""
+        with self.lock:
+            return list(self.snapshots)
+
+    def clear(self):
+        """Clear all snapshots (memory + disk)."""
+
+        with self.lock:
+            self.snapshots.clear()
+
+        # remove saved snapshot files
+        for file in os.listdir(self.save_dir):
+            if file.startswith("week_") and file.endswith(".json"):
+                os.remove(os.path.join(self.save_dir, file))
+
+        print("[SnapshotManager] Snapshots cleared")

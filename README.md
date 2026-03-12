@@ -10,19 +10,12 @@ jetstream link:
 https://eco.149.165.159.157.nip.io/
 
 py -3.10 -m venv venv
+
 .\venv\Scripts\Activate.ps1
+
 pip install matplotlib dash plotly
 
-
-
-
-
-
-
-
-
 get into virtual env: ssh -i ~/.ssh/jetstream2 exouser@149.165.159.157
-
 
 
 Type C: This would be a custom project keeping track of its own snapshots

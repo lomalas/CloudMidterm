@@ -1,71 +1,98 @@
-# main.py
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse, RedirectResponse
 
 from simulation import countries, currencies
-from simulation.live_simulation import run_live_simulation
 from simulation.charts import plot_company_history, plot_currency_history, fig_to_base64
-from fastapi import FastAPI
-from fastapi.responses import JSONResponse, HTMLResponse
+from simulation.controller import SimulationController
+from simulation.snapshot import SnapshotManager
 
 app = FastAPI()
 
+
 def flatten_companies(countries):
     all_companies = []
+
     for country in countries:
         for company in country.companies:
             all_companies.append(company)
+
     return all_companies
 
-def run_simulation_live():
-    """
-    Run the live simulation and return a summary of companies and currencies.
-    """
-    snapshot_manager = run_live_simulation(
-        countries,
-        currencies,
-        weeks=52,
-        delay=0  # fast response for API
-    )
 
-    all_companies = flatten_companies(countries)
-    company_data = [
-        {"name": c.name, "market_cap": c.market_cap}
-        for c in all_companies[:10]
-    ]
+all_companies = flatten_companies(countries)
 
-    currency_data = [
-        {"code": code, "name": curr.name, "value": curr.value}
-        for code, curr in currencies.items()
-    ]
+snapshot_manager = SnapshotManager()
 
-    return snapshot_manager, company_data, currency_data
+controller = SimulationController(
+    all_companies,
+    currencies,
+    snapshot_manager
+)
+
 
 # ---------------------------
 # FastAPI Endpoints
 # ---------------------------
+
 @app.get("/")
 def root():
-    return {"message": "Hello, Econmy Simulator!"}
+    return RedirectResponse("/visualize")
 
-@app.get("/simulate")
-def simulate():
-    snapshot_manager, companies, currencies_data = run_simulation_live()
-    result = {
-        "message": "Simulation complete",
-        "companies": companies,
-        "currencies": currencies_data,
-        "snapshots_captured": len(snapshot_manager.snapshots)
-    }
-    return JSONResponse(content=result)
+
+@app.post("/play")
+def play():
+    controller.play()
+    return {"status": "running"}
+
+
+@app.post("/pause")
+def pause():
+    controller.pause()
+    return {"status": "paused"}
+
+
+@app.post("/reset")
+def reset():
+    controller.reset()
+    return {"status": "reset"}
+
+
+@app.get("/status")
+def status():
+    return controller.status()
+
 
 @app.get("/visualize")
 def visualize():
-    """
-    Return HTML with embedded charts for the top company and first currency.
-    """
-    snapshot_manager, companies, currencies_data = run_simulation_live()
 
-    top_company = companies[0]["name"]
-    first_currency = currencies_data[0]["code"]
+    snapshots = snapshot_manager.get_snapshots()
+
+    status = controller.status()
+
+    if len(snapshots) == 0:
+
+        html = """
+        <html>
+            <body>
+                <h1>Simulation paused. Press Play.</h1>
+
+                <button onclick="play()">▶ Play</button>
+
+                <script>
+                function play(){
+                    fetch('/play',{method:'POST'})
+                    location.reload()
+                }
+                </script>
+
+            </body>
+        </html>
+        """
+
+        return HTMLResponse(html)
+
+    top_company = controller.companies[0].name
+    first_currency = list(controller.currencies.keys())[0]
 
     company_fig = plot_company_history(snapshot_manager, top_company)
     currency_fig = plot_currency_history(snapshot_manager, first_currency)
@@ -75,13 +102,52 @@ def visualize():
 
     html_content = f"""
     <html>
-        <head><title>Econmy Simulator Charts</title></head>
+        <head>
+            <title>Economy Simulator</title>
+            <meta http-equiv="refresh" content="2">
+        </head>
+
         <body>
-            <h1>Top Company: {top_company}</h1>
-            <img src="data:image/png;base64,{company_img}" alt="Company Chart"/>
-            <h1>Currency: {first_currency}</h1>
-            <img src="data:image/png;base64,{currency_img}" alt="Currency Chart"/>
+
+            <h1>Economy Simulator</h1>
+
+            <h3>Week: {status['week']}</h3>
+            <h3>Status: {"RUNNING" if status['running'] else "PAUSED"}</h3>
+            <h3>Snapshots Stored: {status['snapshots']}</h3>
+
+            <div style="margin-bottom:20px">
+
+                <button onclick="play()">▶ Play</button>
+                <button onclick="pause()">⏸ Pause</button>
+                <button onclick="reset()">🔄 Reset</button>
+
+            </div>
+
+            <script>
+
+            function play(){{
+                fetch('/play',{{method:'POST'}})
+            }}
+
+            function pause(){{
+                fetch('/pause',{{method:'POST'}})
+            }}
+
+            function reset(){{
+                fetch('/reset',{{method:'POST'}})
+                location.reload()
+            }}
+
+            </script>
+
+            <h2>Company: {top_company}</h2>
+            <img src="data:image/png;base64,{company_img}"/>
+
+            <h2>Currency: {first_currency}</h2>
+            <img src="data:image/png;base64,{currency_img}"/>
+
         </body>
     </html>
     """
+
     return HTMLResponse(content=html_content)
