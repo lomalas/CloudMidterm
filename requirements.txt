@@ -1,0 +1,5 @@
+matplotlib 
+dash 
+plotly
+fastapi
+uvicorn

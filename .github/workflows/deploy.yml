@@ -1,0 +1,33 @@
+name: Deploy Economy Simulator
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Deploy to Jetstream2
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: exouser
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+
+          cd ~/CloudMidterm
+
+          git pull origin main
+
+          source venv/bin/activate
+
+          pip install -r requirements.txt
+
+          sudo systemctl restart econmysim
