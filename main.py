@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from simulation import countries, currencies
 from simulation.charts import plot_company_history, plot_currency_history, fig_to_base64
 from simulation.controller import SimulationController
@@ -20,9 +20,6 @@ all_companies = flatten_companies(countries)
 snapshot_manager = SnapshotManager()
 controller = SimulationController(all_companies, currencies, snapshot_manager)
 
-# ---------------------------
-# FastAPI Endpoints
-# ---------------------------
 
 @app.get("/")
 def root():
@@ -52,18 +49,36 @@ def status():
     return controller.status()
 
 
+# Serve graphs as raw PNG
+@app.get("/company_graph")
+def company_graph():
+    snapshots = snapshot_manager.get_snapshots()
+    if not snapshots:
+        return Response(status_code=204)
+
+    top_company = controller.companies[0].name
+    fig = plot_company_history(snapshot_manager, top_company)
+    img_bytes = fig_to_base64(fig, return_bytes=True)
+    return Response(content=img_bytes, media_type="image/png")
+
+
+@app.get("/currency_graph")
+def currency_graph():
+    snapshots = snapshot_manager.get_snapshots()
+    if not snapshots:
+        return Response(status_code=204)
+
+    first_currency = list(controller.currencies.keys())[0]
+    fig = plot_currency_history(snapshot_manager, first_currency)
+    img_bytes = fig_to_base64(fig, return_bytes=True)
+    return Response(content=img_bytes, media_type="image/png")
+
+
 @app.get("/visualize")
 def visualize():
     status_data = controller.status()
     top_company = controller.companies[0].name
     first_currency = list(controller.currencies.keys())[0]
-
-    # Initial rendering of graphs
-    company_fig = plot_company_history(snapshot_manager, top_company)
-    currency_fig = plot_currency_history(snapshot_manager, first_currency)
-
-    company_img = fig_to_base64(company_fig)
-    currency_img = fig_to_base64(currency_fig)
 
     html_content = f"""
     <html>
@@ -84,27 +99,24 @@ def visualize():
             </div>
 
             <h2>Company: {top_company}</h2>
-            <img id="company" src="data:image/png;base64,{company_img}"/>
+            <img id="company" src="/company_graph"/>
 
             <h2>Currency: {first_currency}</h2>
-            <img id="currency" src="data:image/png;base64,{currency_img}"/>
+            <img id="currency" src="/currency_graph"/>
 
             <script>
-                async function play(){{
-                    await fetch('/play',{{method:'POST'}});
+                async function play() {{
+                    await fetch('/play', {{method:'POST'}});
                 }}
-
-                async function pause(){{
-                    await fetch('/pause',{{method:'POST'}});
+                async function pause() {{
+                    await fetch('/pause', {{method:'POST'}});
                 }}
-
-                async function reset(){{
-                    await fetch('/reset',{{method:'POST'}});
-                    // Update graphs after reset
+                async function reset() {{
+                    await fetch('/reset', {{method:'POST'}});
                     refreshGraphs();
                 }}
 
-                async function refreshGraphs(){{
+                async function refreshGraphs() {{
                     document.getElementById('company').src='/company_graph?'+Date.now();
                     document.getElementById('currency').src='/currency_graph?'+Date.now();
 
@@ -115,10 +127,8 @@ def visualize():
                     document.getElementById('snapshots').innerText = data.snapshots;
                 }}
 
-                // Refresh graphs every 2 seconds without reloading page
                 setInterval(refreshGraphs, 2000);
             </script>
-
         </body>
     </html>
     """

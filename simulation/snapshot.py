@@ -11,7 +11,6 @@ class Snapshot:
         self.week_number = week_number
         self.timestamp = datetime.now()
 
-        # Capture the state of each company
         self.companies = {
             c.name: {
                 "market_cap": c.market_cap,
@@ -21,13 +20,9 @@ class Snapshot:
             for c in companies
         }
 
-        # Capture the state of each currency
-        self.currencies = {
-            cur.code: cur.value for cur in currencies
-        }
+        self.currencies = {cur.code: cur.value for cur in currencies}
 
     def save(self, filename):
-        """Save this snapshot to a JSON file."""
         with open(filename, "w") as f:
             json.dump({
                 "week_number": self.week_number,
@@ -38,46 +33,32 @@ class Snapshot:
 
 
 class SnapshotManager:
-
     def __init__(self, save_dir="snapshots"):
         self.snapshots = []
         self.save_dir = save_dir
         self.lock = threading.Lock()
-
         os.makedirs(save_dir, exist_ok=True)
 
     def capture_week(self, week_number, companies, currencies):
-
         snapshot = Snapshot(week_number, companies, currencies)
 
         with self.lock:
-
             self.snapshots.append(snapshot)
-
-            # Ring buffer to prevent infinite growth
             if len(self.snapshots) > MAX_SNAPSHOTS:
                 self.snapshots.pop(0)
 
-        # Save snapshot to disk
         filename = os.path.join(self.save_dir, f"week_{week_number}.json")
         snapshot.save(filename)
-
         print(f"[Snapshot] Week {week_number} saved: {filename}")
 
     def get_snapshots(self):
-        """Thread-safe snapshot copy for readers."""
         with self.lock:
             return list(self.snapshots)
 
     def clear(self):
-        """Clear all snapshots (memory + disk)."""
-
         with self.lock:
             self.snapshots.clear()
-
-        # remove saved snapshot files
         for file in os.listdir(self.save_dir):
             if file.startswith("week_") and file.endswith(".json"):
                 os.remove(os.path.join(self.save_dir, file))
-
         print("[SnapshotManager] Snapshots cleared")
