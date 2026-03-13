@@ -1,6 +1,6 @@
 {
     "week_number": 1,
-    "timestamp": "2026-03-03T13:47:13.203930",
+    "timestamp": "2026-03-13T11:46:24.457637",
     "companies": {
         "TitanForge Defense": {
             "market_cap": 1.0,
@@ -8,7 +8,7 @@
             "country": "Lexion"
         },
         "Cerebra AI Systems": {
-            "market_cap": 1.0,
+            "market_cap": 1.0072528917751342,
             "sector": 420,
             "country": "Lexion"
         },
@@ -23,27 +23,27 @@
             "country": "Lexion"
         },
         "NexaDrive Motors": {
-            "market_cap": 1.0,
+            "market_cap": 1.004260893713607,
             "sector": 145,
             "country": "Lexion"
         },
         "Voltrix Nuclear": {
-            "market_cap": 1.0,
+            "market_cap": 1.0047007288088479,
             "sector": 175,
             "country": "Lexion"
         },
         "OmniSteel Heavy Industries": {
-            "market_cap": 1.0,
+            "market_cap": 1.0018878908226816,
             "sector": 150,
             "country": "Lexion"
         },
         "LexAgri Systems": {
-            "market_cap": 1.0,
+            "market_cap": 1.0013092803872672,
             "sector": 70,
             "country": "Lexion"
         },
         "IonGrid Storage": {
-            "market_cap": 1.0,
+            "market_cap": 1.0088234274218497,
             "sector": 350,
             "country": "Solmere Collective"
         },
@@ -53,57 +53,57 @@
             "country": "Solmere Collective"
         },
         "Verdant BioLabs": {
-            "market_cap": 1.0,
+            "market_cap": 1.0062283670138328,
             "sector": 180,
             "country": "Solmere Collective"
         },
         "EcoTransit Systems": {
-            "market_cap": 1.0,
+            "market_cap": 1.0009332121196164,
             "sector": 120,
             "country": "Solmere Collective"
         },
         "GreenCore Materials": {
-            "market_cap": 1.0,
+            "market_cap": 1.0011015812613657,
             "sector": 95,
             "country": "Solmere Collective"
         },
         "Helios Robotics": {
-            "market_cap": 1.0,
+            "market_cap": 1.0017186267275116,
             "sector": 310,
             "country": "Helios Pact"
         },
         "Synapse Automation": {
-            "market_cap": 1.0,
+            "market_cap": 1.0011006877839714,
             "sector": 220,
             "country": "Helios Pact"
         },
         "QuantumWorks Labs": {
-            "market_cap": 1.0,
+            "market_cap": 1.0017535374459345,
             "sector": 400,
             "country": "Helios Pact"
         },
         "PetroDrav Energy": {
-            "market_cap": 1.0,
+            "market_cap": 1.0007206367652868,
             "sector": 220,
             "country": "Dravosk Union"
         },
         "Granite Crown Mining": {
-            "market_cap": 1.0,
+            "market_cap": 1.0002137456437574,
             "sector": 95,
             "country": "Dravosk Union"
         },
         "DravRail Logistics": {
-            "market_cap": 1.0,
+            "market_cap": 1.000266096391888,
             "sector": 60,
             "country": "Dravosk Union"
         },
         "Borealis Drilling": {
-            "market_cap": 1.0,
+            "market_cap": 1.000781406201616,
             "sector": 130,
             "country": "Dravosk Union"
         },
         "Union Gas Export": {
-            "market_cap": 1.0,
+            "market_cap": 1.0010882084245016,
             "sector": 115,
             "country": "Dravosk Union"
         },
@@ -113,37 +113,37 @@
             "country": "Velkar Basin"
         },
         "Cobalt Frontier Ltd": {
-            "market_cap": 1.0,
+            "market_cap": 1.0008843552002975,
             "sector": 18,
             "country": "Velkar Basin"
         },
         "Basin Transport Group": {
-            "market_cap": 1.0,
+            "market_cap": 1.0004282712722912,
             "sector": 9,
             "country": "Velkar Basin"
         },
         "Arkenfall Copper": {
-            "market_cap": 1.0,
+            "market_cap": 1.0018228850199435,
             "sector": 70,
             "country": "Arkenfall"
         },
         "HighPeak Steel": {
-            "market_cap": 1.0,
+            "market_cap": 1.001156274757553,
             "sector": 95,
             "country": "Arkenfall"
         },
         "Alpine Transit Co": {
-            "market_cap": 1.0,
+            "market_cap": 1.0003236594174698,
             "sector": 55,
             "country": "Arkenfall"
         },
         "SkyBridge Financial": {
-            "market_cap": 1.0,
+            "market_cap": 1.0019556161490968,
             "sector": 285,
             "country": "Varin Republic"
         },
         "BlueHarbor Shipping": {
-            "market_cap": 1.0,
+            "market_cap": 1.0056028760262852,
             "sector": 140,
             "country": "Varin Republic"
         },
@@ -153,67 +153,67 @@
             "country": "Varin Republic"
         },
         "Virex Technologies": {
-            "market_cap": 1.0,
+            "market_cap": 1.012898676078837,
             "sector": 210,
             "country": "Varin Republic"
         },
         "OceanGate Insurance": {
-            "market_cap": 1.0,
+            "market_cap": 1.0018671507893657,
             "sector": 90,
             "country": "Varin Republic"
         },
         "Selvarin Global Bank": {
-            "market_cap": 1.0,
+            "market_cap": 1.004529671970137,
             "sector": 250,
             "country": "Selvarin"
         },
         "Haven Asset Management": {
-            "market_cap": 1.0,
+            "market_cap": 1.0055473274153726,
             "sector": 175,
             "country": "Selvarin"
         },
         "SecureVault Holdings": {
-            "market_cap": 1.0,
+            "market_cap": 1.0043949894884647,
             "sector": 120,
             "country": "Selvarin"
         },
         "KarthWorks Manufacturing": {
-            "market_cap": 1.0,
+            "market_cap": 1.0010887696775985,
             "sector": 110,
             "country": "Karth Dominion"
         },
         "NovaConstruct Infrastructure": {
-            "market_cap": 1.0,
+            "market_cap": 1.0012702298120344,
             "sector": 95,
             "country": "Karth Dominion"
         },
         "EastWeave Textiles": {
-            "market_cap": 1.0,
+            "market_cap": 1.0016620061947907,
             "sector": 45,
             "country": "Karth Dominion"
         },
         "Dominion Plastics": {
-            "market_cap": 1.0,
+            "market_cap": 1.0019216297244566,
             "sector": 60,
             "country": "Karth Dominion"
         },
         "UrbanRise Development": {
-            "market_cap": 1.0,
+            "market_cap": 1.0017552727814074,
             "sector": 70,
             "country": "Karth Dominion"
         },
         "PolyChem Tazbek": {
-            "market_cap": 1.0,
+            "market_cap": 1.000763423874312,
             "sector": 65,
             "country": "Tazbek Industrial Zone"
         },
         "Threadline Textiles": {
-            "market_cap": 1.0,
+            "market_cap": 1.0012305809014583,
             "sector": 38,
             "country": "Tazbek Industrial Zone"
         },
         "SunPort Assembly": {
-            "market_cap": 1.0,
+            "market_cap": 1.0020327444547257,
             "sector": 72,
             "country": "Tazbek Industrial Zone"
         },
@@ -223,27 +223,27 @@
             "country": "Tazbek Industrial Zone"
         },
         "Baresh Textiles": {
-            "market_cap": 1.0,
+            "market_cap": 1.0011711926029025,
             "sector": 25,
             "country": "Baresh Dominion"
         },
         "IronHands Tooling": {
-            "market_cap": 1.0,
+            "market_cap": 1.0005745905048717,
             "sector": 40,
             "country": "Baresh Dominion"
         },
         "Port Baresh Logistics": {
-            "market_cap": 1.0,
+            "market_cap": 1.0004416273178962,
             "sector": 30,
             "country": "Baresh Dominion"
         },
         "Orlith Canal Corporation": {
-            "market_cap": 1.0,
+            "market_cap": 1.0032287283445094,
             "sector": 300,
             "country": "Orlith Strait Authority"
         },
         "StraitShield Maritime Security": {
-            "market_cap": 1.0,
+            "market_cap": 1.0017281589079627,
             "sector": 110,
             "country": "Orlith Strait Authority"
         },
@@ -268,87 +268,87 @@
             "country": "Mavaria"
         },
         "HarvestBond Commodities": {
-            "market_cap": 1.0,
+            "market_cap": 1.0010396200129934,
             "sector": 22,
             "country": "Mavaria"
         },
         "Zarethia Resorts": {
-            "market_cap": 1.0,
+            "market_cap": 1.0026707196040348,
             "sector": 85,
             "country": "Zarethia"
         },
         "AzureAir Travel": {
-            "market_cap": 1.0,
+            "market_cap": 1.0018774284291403,
             "sector": 75,
             "country": "Zarethia"
         },
         "Sapphire Coast Holdings": {
-            "market_cap": 1.0,
+            "market_cap": 1.0004683993465047,
             "sector": 60,
             "country": "Zarethia"
         },
         "Korynthia Cloud Systems": {
-            "market_cap": 1.0,
+            "market_cap": 1.0133794820676896,
             "sector": 280,
             "country": "Korynthia"
         },
         "NanoSpark Innovations": {
-            "market_cap": 1.0,
+            "market_cap": 1.0133592506800948,
             "sector": 210,
             "country": "Korynthia"
         },
         "CircuitWave Electronics": {
-            "market_cap": 1.0,
+            "market_cap": 1.0001197428856454,
             "sector": 150,
             "country": "Korynthia"
         },
         "Virelia Grain Co": {
-            "market_cap": 1.0,
+            "market_cap": 1.001900087196972,
             "sector": 75,
             "country": "Virelia"
         },
         "SunHarvest Oils": {
-            "market_cap": 1.0,
+            "market_cap": 1.0020469417300861,
             "sector": 60,
             "country": "Virelia"
         },
         "GreenPasture Livestock": {
-            "market_cap": 1.0,
+            "market_cap": 1.0016848713715771,
             "sector": 50,
             "country": "Virelia"
         },
         "Draxmoor Arms": {
-            "market_cap": 1.0,
+            "market_cap": 1.0098951181479987,
             "sector": 190,
             "country": "Draxmoor"
         },
         "BlackForge Machinery": {
-            "market_cap": 1.0,
+            "market_cap": 1.0004005814277808,
             "sector": 130,
             "country": "Draxmoor"
         },
         "IronWall Logistics": {
-            "market_cap": 1.0,
+            "market_cap": 1.0014037433953151,
             "sector": 85,
             "country": "Draxmoor"
         },
         "FrostCore Minerals": {
-            "market_cap": 1.0,
+            "market_cap": 1.0007642667115701,
             "sector": 140,
             "country": "Norvane"
         },
         "PolarWind Energy": {
-            "market_cap": 1.0,
+            "market_cap": 1.0012413784839969,
             "sector": 115,
             "country": "Norvane"
         },
         "Norvane Logistics": {
-            "market_cap": 1.0,
+            "market_cap": 1.0031778239872506,
             "sector": 90,
             "country": "Norvane"
         },
         "Qandor National Oil": {
-            "market_cap": 1.0,
+            "market_cap": 1.0004413698558643,
             "sector": 260,
             "country": "Qandor Emirate"
         },
@@ -358,30 +358,30 @@
             "country": "Qandor Emirate"
         },
         "Sovereign Capital Holdings": {
-            "market_cap": 1.0,
+            "market_cap": 1.002630374846342,
             "sector": 180,
             "country": "Qandor Emirate"
         }
     },
     "currencies": {
-        "LX": 1.0083066142454424,
-        "SLR": 1.0075166911424034,
-        "HL": 1.0088169600526768,
-        "DRV": 1.0083764512583855,
-        "VLC": 1.005825320030294,
-        "ARK": 1.0083764512583855,
-        "VRC": 1.008355859729822,
-        "SEL": 1.0053436670992366,
-        "KTM": 1.0019798209193935,
-        "TZU": 1.000870602615204,
-        "BHP": 1.0011168785740345,
-        "ORT": 0.9982856380294179,
-        "MVA": 0.9969523232279643,
-        "ZRD": 0.9944588634895014,
-        "KYT": 1.001980289062373,
-        "VFL": 0.9964495418128274,
-        "DXM": 1.0013388482627867,
-        "NRC": 0.9976154751709873,
-        "QDR": 1.0083764512583855
+        "LX": 1.0214143033395178,
+        "SLR": 1.028094096918079,
+        "HL": 0.9954178982119825,
+        "DRV": 1.0385910524549213,
+        "VLC": 0.9819076941508326,
+        "ARK": 1.0385910524549213,
+        "VRC": 0.9493486270295912,
+        "SEL": 0.9538396809318617,
+        "KTM": 1.0539917043335159,
+        "TZU": 1.021384127626832,
+        "BHP": 1.0365074148576046,
+        "ORT": 1.0093098127846751,
+        "MVA": 1.0176165330871616,
+        "ZRD": 0.9865190942700126,
+        "KYT": 1.035146321464587,
+        "VFL": 1.0454740510665774,
+        "DXM": 0.9577623795578998,
+        "NRC": 1.013963693561506,
+        "QDR": 1.0385910524549213
     }
 }
